@@ -23,7 +23,7 @@ public class MedicoController {
 
     @PostMapping
     @Transactional
-                                                                                  // encapsula o endeço da uri
+                                                                                  // classe encapsula o endeço da uri
     public ResponseEntity cadastrar(@RequestBody @Valid DadosCadastroMedico dados, UriComponentsBuilder uriBuilder){
         var medico = new Medico(dados);
         repositorio.save(medico);
