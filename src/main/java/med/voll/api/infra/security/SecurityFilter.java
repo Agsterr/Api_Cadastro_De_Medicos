@@ -1,7 +1,6 @@
 package med.voll.api.infra.security;
 
 
-import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -16,7 +15,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 
 @Component
-public class SecuryFilter extends OncePerRequestFilter {
+public class SecurityFilter extends OncePerRequestFilter {
 
     @Autowired
     private TokenService service;
@@ -48,11 +47,10 @@ public class SecuryFilter extends OncePerRequestFilter {
     //verificar se não é nulo
     private String recuperarToken(HttpServletRequest request) {
         var authorizationHeader = request.getHeader("Authorization");
-
         if (authorizationHeader != null) {
-
-            return authorizationHeader.replace("Bearer", "");
+            return authorizationHeader.replace("Bearer ", "");
         }
+
         return null;
     }
 }
