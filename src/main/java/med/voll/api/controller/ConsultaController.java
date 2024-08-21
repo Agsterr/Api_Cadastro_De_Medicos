@@ -39,7 +39,8 @@ public class ConsultaController {
     @GetMapping
     public ResponseEntity<Page<DadosDetalhamentoConsulta>> listar(Pageable pageable){
 
-        var page = repository.findAll(pageable).map(DadosDetalhamentoConsulta::new );
+        var page = repository.findAllActiveConsultas(pageable)
+                .map(DadosDetalhamentoConsulta::new);
         return ResponseEntity.ok(page);
 
         }
